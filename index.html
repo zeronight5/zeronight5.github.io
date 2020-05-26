@@ -225,7 +225,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/03/31/linux-terminal-with-proxy/">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2019/06/27/e4-b8-80-e4-b8-aa-e5-b0-8f-e8-84-9a-e6-9c-ac/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -239,7 +239,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2017/03/31/linux-terminal-with-proxy/" class="post-title-link" itemprop="url">Linux下让指定程序走代理</a>
+            <a href="/2019/06/27/e4-b8-80-e4-b8-aa-e5-b0-8f-e8-84-9a-e6-9c-ac/" class="post-title-link" itemprop="url">一个小脚本</a>
         </h2>
 
         <div class="post-meta">
@@ -249,15 +249,28 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-03-31 09:33:33" itemprop="dateCreated datePublished" datetime="2017-03-31T09:33:33+08:00">2017-03-31</time>
+              <time title="Created: 2019-06-27 09:20:42" itemprop="dateCreated datePublished" datetime="2019-06-27T09:20:42+08:00">2019-06-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
+                <time title="Modified: 2020-05-26 10:23:33" itemprop="dateModified" datetime="2020-05-26T10:23:33+08:00">2020-05-26</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
 
           
 
@@ -270,284 +283,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>1.proxychains-ng安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/rofl0r/proxychains-ng.git</span><br><span class="line">cd proxychains-ng/</span><br><span class="line">./configure --prefix=/usr/local/proxychains --sysconfdir=/etc</span><br><span class="line">sudo make </span><br><span class="line">sudo make install</span><br><span class="line">sudo make install-config</span><br></pre></td></tr></table></figure>
-<p>2.proxychains-ng配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/proxychains.conf</span><br><span class="line"><span class="meta">#</span><span class="bash">将socks4 127.0.0.1 9095改为自己的代理端口</span></span><br><span class="line">socks5  127.0.0.1 1080  //1080改为你自己的端口</span><br><span class="line">sudo cp /usr/local/proxychains/bin/proxychains4 /usr/local/bin/proxy</span><br></pre></td></tr></table></figure>
-<p>3.proxychains-ng使用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy wget http://www.baidu.com</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/03/31/gradle-multi-channel-package/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jay">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="永希">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/03/31/gradle-multi-channel-package/" class="post-title-link" itemprop="url">GRADLE多渠道打包</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-03-31 09:30:33" itemprop="dateCreated datePublished" datetime="2017-03-31T09:30:33+08:00">2017-03-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>示例脚本</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="string">plugin:</span> <span class="string">'com.android.application'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> releaseTime() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Date().format(<span class="string">"yyyy-MM-dd"</span>, TimeZone.getTimeZone(<span class="string">"UTC"</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion <span class="number">21</span></span><br><span class="line">    buildToolsVersion <span class="string">'21.1.2'</span></span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId <span class="string">"com.boohee.*"</span></span><br><span class="line">        minSdkVersion <span class="number">14</span></span><br><span class="line">        targetSdkVersion <span class="number">21</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.0"</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// dex突破65535的限制</span></span><br><span class="line">        multiDexEnabled <span class="literal">true</span></span><br><span class="line">        <span class="comment">// 默认是umeng的渠道</span></span><br><span class="line">        manifestPlaceholders = [<span class="string">UMENG_CHANNEL_VALUE:</span> <span class="string">"umeng"</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    lintOptions &#123;</span><br><span class="line">        abortOnError <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    signingConfigs &#123;</span><br><span class="line">        debug &#123;</span><br><span class="line">            <span class="comment">// No debug config</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        release &#123;</span><br><span class="line">            storeFile file(<span class="string">"../yourapp.keystore"</span>)</span><br><span class="line">            storePassword <span class="string">"your password"</span></span><br><span class="line">            keyAlias <span class="string">"your alias"</span></span><br><span class="line">            keyPassword <span class="string">"your password"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        debug &#123;</span><br><span class="line">            <span class="comment">// 显示Log</span></span><br><span class="line">            buildConfigField <span class="string">"boolean"</span>, <span class="string">"LOG_DEBUG"</span>, <span class="string">"true"</span></span><br><span class="line"></span><br><span class="line">            versionNameSuffix <span class="string">"-debug"</span></span><br><span class="line">            minifyEnabled <span class="literal">false</span></span><br><span class="line">            zipAlignEnabled <span class="literal">false</span></span><br><span class="line">            shrinkResources <span class="literal">false</span></span><br><span class="line">            signingConfig signingConfigs.debug</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        release &#123;</span><br><span class="line">            <span class="comment">// 不显示Log</span></span><br><span class="line">            buildConfigField <span class="string">"boolean"</span>, <span class="string">"LOG_DEBUG"</span>, <span class="string">"false"</span></span><br><span class="line"></span><br><span class="line">            minifyEnabled <span class="literal">true</span></span><br><span class="line">            zipAlignEnabled <span class="literal">true</span></span><br><span class="line">            <span class="comment">// 移除无用的resource文件</span></span><br><span class="line">            shrinkResources <span class="literal">true</span></span><br><span class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line"></span><br><span class="line">            applicationVariants.all &#123; variant -&gt;</span><br><span class="line">                variant.outputs.each &#123; output -&gt;</span><br><span class="line">                    <span class="keyword">def</span> outputFile = output.outputFile</span><br><span class="line">                    <span class="keyword">if</span> (outputFile != <span class="literal">null</span> &amp;&amp; outputFile.name.endsWith(<span class="string">'.apk'</span>)) &#123;</span><br><span class="line">                    	<span class="comment">// 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk</span></span><br><span class="line">                        <span class="keyword">def</span> fileName = <span class="string">"boohee_v$&#123;defaultConfig.versionName&#125;_$&#123;releaseTime()&#125;_$&#123;variant.productFlavors[0].name&#125;.apk"</span></span><br><span class="line">                        output.outputFile = <span class="keyword">new</span> File(outputFile.parent, fileName)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 友盟多渠道打包</span></span><br><span class="line">    productFlavors &#123;</span><br><span class="line">        wandoujia &#123;&#125;</span><br><span class="line">        _360 &#123;&#125;</span><br><span class="line">        baidu &#123;&#125;</span><br><span class="line">        xiaomi &#123;&#125;</span><br><span class="line">        tencent &#123;&#125;</span><br><span class="line">        taobao &#123;&#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    productFlavors.all &#123; flavor -&gt;</span><br><span class="line">        flavor.manifestPlaceholders = [<span class="string">UMENG_CHANNEL_VALUE:</span> name]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile fileTree(<span class="string">dir:</span> <span class="string">'libs'</span>, <span class="string">include:</span> [<span class="string">'*.jar'</span>])</span><br><span class="line">    compile <span class="string">'com.android.support:support-v4:21.0.3'</span></span><br><span class="line">    compile <span class="string">'com.jakewharton:butterknife:6.0.0'</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/03/31/android-cross-compile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jay">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="永希">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/03/31/android-cross-compile/" class="post-title-link" itemprop="url">Android交叉编译curl</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-03-31 09:27:33" itemprop="dateCreated datePublished" datetime="2017-03-31T09:27:33+08:00">2017-03-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>操作系统：ubuntu 14.04<br>一.安装需要工具</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install autoconf libtool libsysfs-dev</span><br></pre></td></tr></table></figure>
-<p>二.制作交叉编译工具链<br>1.下载NDK，并配置NDK环境变量为NDK的安装路径<br>2.根据NDK里docs文档里的standalone-toolchain.html来抽取交叉编译的环境。<br>3.配置SYSROOT环境变量： </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SYSROOT=$NDK/platforms/android-19/arch-arm //android-19是你的android开发版本所定</span><br></pre></td></tr></table></figure>
-<p>4.然后运行命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">NDK/build/tools/make-standalone-toolchain.sh --platform=android-19 --install-dir=/tmp/my-android-toolchain</span></span><br></pre></td></tr></table></figure>
-<p>/tmp/my-android-toolchain是你交叉编译环境的复制路径。最好别放在tmp目录里，因为重启机子就立即消失了。这个新生成的文件 夹即是你的交叉编译环境<br>5.配置PAHT和CC环境变量：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/tmp/my-android-toolchain/bin:$PATH</span><br><span class="line">export CC=arm-linux-androideabi-gcc</span><br></pre></td></tr></table></figure>
-<p>三.下载curl并编译</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/curl/curl.git</span><br><span class="line">cd curl</span><br><span class="line">mkdir build</span><br><span class="line">autoreconf -i</span><br><span class="line">./configure --host=arm-linux --enable-cross-compile --enable-threaded-resolver --disable-shared --disable-ftp --disable-file --disable-ldap --disable-ldaps --disable-rtsp --disable-dict --disable-telnet --disable-tftp --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-manual --enable-proxy --enable-ipv6 --enable-cookies --enable-symbol-hiding --disable-versioned-symbols --disable-soname-bump --disable-sspi --disable-ntlm-wb --prefix=`pwd`/build</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/03/31/how-to-generate-javadoc-with-gradle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jay">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="永希">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/03/31/how-to-generate-javadoc-with-gradle/" class="post-title-link" itemprop="url">如何用gradle生成javadoc</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-03-31 09:27:33" itemprop="dateCreated datePublished" datetime="2017-03-31T09:27:33+08:00">2017-03-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在模块的build.gradle中填入以下内容</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">task javadoc(<span class="string">type:</span> Javadoc) &#123;</span><br><span class="line">    source = android.sourceSets.main.java.srcDirs</span><br><span class="line">    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">javadoc &#123;</span><br><span class="line">    options &#123;</span><br><span class="line">        encoding <span class="string">"UTF-8"</span></span><br><span class="line">        charSet <span class="string">'UTF-8'</span></span><br><span class="line">        author <span class="literal">true</span></span><br><span class="line">        version <span class="literal">true</span></span><br><span class="line">        splitIndex <span class="literal">true</span></span><br><span class="line">        noDeprecated <span class="literal">true</span></span><br><span class="line">        setMemberLevel(JavadocMemberLevel.PUBLIC)</span><br><span class="line">        links <span class="string">"http://docs.oracle.com/javase/8/docs/api"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面还有一个可能更好使</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">android.libraryVariants.all &#123; variant -&gt;</span><br><span class="line">    task(<span class="string">"generate$&#123;variant.name&#125;Javadoc"</span>, <span class="string">type:</span> Javadoc) &#123;</span><br><span class="line">        title = <span class="string">"$name $version API"</span></span><br><span class="line">        source = variant.javaCompile.source</span><br><span class="line">        ext.androidJar = <span class="string">"$&#123;android.sdkDirectory&#125;/platforms/$&#123;android.compileSdkVersion&#125;/android.jar"</span></span><br><span class="line">        classpath = files(variant.javaCompile.classpath.files, ext.androidJar)</span><br><span class="line">        options &#123;</span><br><span class="line">            links(<span class="string">"http://docs.oracle.com/javase/8/docs/api/"</span>);</span><br><span class="line">            linksOffline(<span class="string">"http://d.android.com/reference"</span>, <span class="string">"$&#123;android.sdkDirectory&#125;/docs/reference"</span>);</span><br><span class="line">            encoding <span class="string">"UTF-8"</span></span><br><span class="line">            charSet <span class="string">'UTF-8'</span></span><br><span class="line">            author <span class="literal">true</span></span><br><span class="line">            version <span class="literal">true</span></span><br><span class="line">            splitIndex <span class="literal">true</span></span><br><span class="line">            noDeprecated <span class="literal">true</span></span><br><span class="line">            setMemberLevel(JavadocMemberLevel.PUBLIC)</span><br><span class="line">        &#125;</span><br><span class="line">        failOnError <span class="literal">false</span></span><br><span class="line">        exclude <span class="string">'**/BuildConfig.java'</span></span><br><span class="line">        exclude <span class="string">'**/R.java'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/02/10/setup-ubuntu-file-explorer-show-full-path/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jay">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="永希">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/02/10/setup-ubuntu-file-explorer-show-full-path/" class="post-title-link" itemprop="url">如何设置ubuntu文件管理器显示路径地址</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-02-10 17:27:33" itemprop="dateCreated datePublished" datetime="2017-02-10T17:27:33+08:00">2017-02-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>安装dconf-editor，并运行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install dconf-editor</span><br></pre></td></tr></table></figure>
-<p>勾选<code>org-&gt;gnome-&gt;nautilus-&gt;preferences-&gt;&quot;always-use-location-entry&quot;</code></p>
+          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/env bash</span></span><br><span class="line">ARGS=($*)</span><br><span class="line">ADB="adb"</span><br><span class="line">ANDROID_DEVICES=(`adb devices | sed '1d' | awk '&#123;print $1&#125;'`)</span><br><span class="line">if [[ $&#123;#ANDROID_DEVICES[@]&#125; -gt 1 ]];then</span><br><span class="line">for((j=0;j&amp;lt;$&#123;#ANDROID_DEVICES[@]&#125;;j++))</span><br><span class="line">do</span><br><span class="line">echo $(expr $&#123;j&#125; + 1).$&#123;ANDROID_DEVICES[$j]&#125;</span><br><span class="line">done</span><br><span class="line">while [[ $REPLY == "" || $REPLY == "0" ]];do</span><br><span class="line">read -p "输入序号选择设备："</span><br><span class="line">done</span><br><span class="line">ADB="adb -s "$&#123;ANDROID_DEVICES[$REPLY-1]&#125;</span><br><span class="line">fi</span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;ADB&#125; <span class="variable">$&#123;ARGS[@]&#125;</span></span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -567,7 +303,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/02/10/build-gradle/">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2018/11/26/mongo-e6-85-a2-e6-9f-a5-e8-af-a2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -581,7 +317,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2017/02/10/build-gradle/" class="post-title-link" itemprop="url">如何将非Android Studio项目用gradle编译</a>
+            <a href="/2018/11/26/mongo-e6-85-a2-e6-9f-a5-e8-af-a2/" class="post-title-link" itemprop="url">Mongo慢查询</a>
         </h2>
 
         <div class="post-meta">
@@ -591,15 +327,24 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-02-10 16:27:33" itemprop="dateCreated datePublished" datetime="2017-02-10T16:27:33+08:00">2017-02-10</time>
+              <time title="Created: 2018-11-26 10:37:19" itemprop="dateCreated datePublished" datetime="2018-11-26T10:37:19+08:00">2018-11-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B0%8F%E6%8F%90%E7%A4%BA/" itemprop="url" rel="index"><span itemprop="name">小提示</span></a>
+                </span>
+            </span>
 
           
 
@@ -612,9 +357,430 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>示例<code>build.gradle</code>文件如下。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">'com.android.tools.build:gradle:2.2.1'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'com.android.application'</span></span><br><span class="line"></span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        <span class="comment">//maven &#123; url "https://jitpack.io" &#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile fileTree(<span class="string">include:</span> <span class="string">'*.jar'</span>, <span class="string">dir:</span> <span class="string">'libs'</span>)</span><br><span class="line">    <span class="comment">//compile(name: 'MPChartLib-release', ext: 'aar')</span></span><br><span class="line">    compile <span class="string">'com.android.support:support-annotations:24.2.1'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories&#123;</span><br><span class="line">    flatDir &#123;</span><br><span class="line">        dirs <span class="string">'libs'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion <span class="number">23</span></span><br><span class="line">    buildToolsVersion <span class="string">"24.0.0"</span></span><br><span class="line"></span><br><span class="line">    sourceSets &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            manifest.srcFile <span class="string">'AndroidManifest.xml'</span></span><br><span class="line">            java.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            resources.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            aidl.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            renderscript.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            res.srcDirs = [<span class="string">'res'</span>]</span><br><span class="line">            assets.srcDirs = [<span class="string">'assets'</span>]</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Move the tests to tests/java, tests/res, etc...</span></span><br><span class="line">        instrumentTest.setRoot(<span class="string">'tests'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Move the build types to build-types/&lt;type&gt;</span></span><br><span class="line">        <span class="comment">// For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...</span></span><br><span class="line">        <span class="comment">// This moves them out of them default location under src/&lt;type&gt;/... which would</span></span><br><span class="line">        <span class="comment">// conflict with src/ being used by the main source set.</span></span><br><span class="line">        <span class="comment">// Adding new build types or product flavors should be accompanied</span></span><br><span class="line">        <span class="comment">// by a similar customization.</span></span><br><span class="line">        debug.setRoot(<span class="string">'build-types/debug'</span>)</span><br><span class="line">        release.setRoot(<span class="string">'build-types/release'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <pre><code>db.system.profile.find({&quot;op&quot; : &quot;query&quot;,&quot;ns&quot; : &quot;poetries&quot;, millis : { $gt : 100 },ts : { $gt : new ISODate(&quot;2018-06-07T00:00:00.000Z&quot;),$lt : new ISODate(&quot;2018-06-07T10:00:00.000Z&quot;)}}).pretty()
 
+
+db.getProfilingLevel()   1为开启</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2018/03/02/git-e8-af-bb-e5-8f-96jira-issues-e7-9a-84hook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jay">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永希">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/02/git-e8-af-bb-e5-8f-96jira-issues-e7-9a-84hook/" class="post-title-link" itemprop="url">Git读取Jira issues的hook</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-03-02 10:43:21" itemprop="dateCreated datePublished" datetime="2018-03-02T10:43:21+08:00">2018-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>为了方便填写git commit message，写了一个脚本用于读取jira上的issues，并列出选择作为commit message。 用到了git hook中的prepare-commit-msg 下面提供bash shell和python3两个版本 1.bash shell 此版本需要安装jq。</p>
+<pre><code>#!/bin/bash
+USERNAME=`git config --get user.name`
+if [ &quot;$2&quot; = &quot;message&quot; -o &quot;$2&quot; = &quot;commit&quot; ]
+then
+    exit 0
+fi
+exec 2&gt; /dev/null
+ISSUS=`curl -u jira:jira &quot;http://localhost:8081/rest/api/2/search?jql=status+in+(Reopened,%20%22To%20Do%22,%20%22In%20Progress%22)%20AND%20assignee%20in%20($USERNAME)%20ORDER%20BY%20updated%20DESC&quot; | jq &apos;.issues[]|{summary: .fields.summary, key: .key}&apos;`
+KEYS=(`echo $ISSUS | jq &apos;.key&apos;`)
+SUMMARYS_TMP=(&quot;`echo $ISSUS | jq &apos;.summary&apos;`&quot;)
+IFS_old=$IFS
+IFS=$&apos;\n&apos;
+SUMMARYS=($SUMMARYS_TMP)
+IFS=&apos;&quot;&apos;
+number=${#KEYS[@]}
+declare -a ISSUSES=&apos;()&apos;
+for((i=0;i&lt;$number;i++))
+do
+    ISSUSES[$i]=&quot;${KEYS[$i]}${SUMMARYS[$i]}&quot;
+done
+for((j=0;j&lt;${#ISSUSES[@]};j++))
+do
+    let k=$j+1
+    echo $k.${ISSUSES[$j]}
+done
+exec &lt; /dev/tty
+exec 2&gt;&amp;1
+read -p &quot;请输入编号：&quot;
+let answer=$REPLY-1
+echo ${ISSUSES[$answer]} &gt; $1
+IFS=$IFS_old</code></pre><p>2.python3</p>
+<pre><code>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import sys, os, re
+from subprocess import check_output
+import requests
+import json
+
+def query_report(user):
+    s = requests.Session()
+    s.post(&apos;http://localhost:8081/rest/auth/1/session&apos;, json={&quot;username&quot;:&quot;jira&quot;,&quot;password&quot;:&quot;jira&quot;})
+    url = &apos;http://localhost:8081/rest/api/2/search?jql=status+in+(Reopened,%20%22To%20Do%22,%20%22In%20Progress%22)%20AND%20assignee%20in%20(&apos; + user +&apos;)%20ORDER%20BY%20updated%20DESC&apos;
+    reports = s.get(url)
+    return reports.json()
+
+sys.stdin = open(&apos;/dev/tty&apos;)
+# 收集参数
+commit_msg_filepath = sys.argv[1]
+if len(sys.argv) &gt; 2:
+    commit_type = sys.argv[2]
+else:
+    commit_type = &apos;&apos;
+if len(sys.argv) &gt; 3:
+    commit_hash = sys.argv[3]
+else:
+    commit_hash = &apos;&apos;
+
+if commit_type == &quot;message&quot;:
+    sys.exit(0)
+# 检测我们所在的分支
+branch = check_output([&apos;git&apos;, &apos;symbolic-ref&apos;, &apos;--short&apos;, &apos;HEAD&apos;]).strip()
+branch = str(branch, &apos;utf-8&apos;)
+print(&quot;On branch &apos;%s&apos;&quot; % branch)
+username = check_output([&apos;git&apos;, &apos;config&apos;, &apos;--get&apos;, &apos;user.name&apos;]).strip()
+username = str(username, &apos;utf-8&apos;)
+messages = []
+if branch.startswith(&apos;master&apos;):
+    j = query_report(username)
+    if j[&quot;total&quot;] &gt; 0:
+        issues = j[&quot;issues&quot;]
+        for i in range(len(issues)):
+            print(str(i+1) + &apos;:&apos; + issues[i][&quot;key&quot;] + &quot; &quot; + issues[i][&quot;fields&quot;][&quot;summary&quot;])
+            messages.append(issues[i][&quot;key&quot;] + &quot; &quot; + issues[i][&quot;fields&quot;][&quot;summary&quot;]);
+    number = input(&quot;请输入编号: &quot;)
+    message = messages[int(number) - 1]
+    with open(commit_msg_filepath, &apos;w&apos;) as f:
+        f.seek(0, 0)
+        f.write(message)</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2018/02/11/ubuntu-14-04-aosp-e6-ba-90-e7-a0-81-e7-bc-96-e8-af-91-e6-8c-87-e5-8d-97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jay">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永希">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/11/ubuntu-14-04-aosp-e6-ba-90-e7-a0-81-e7-bc-96-e8-af-91-e6-8c-87-e5-8d-97/" class="post-title-link" itemprop="url">Ubuntu 14.04 AOSP源码编译指南</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-02-11 13:39:36" itemprop="dateCreated datePublished" datetime="2018-02-11T13:39:36+08:00">2018-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Linux/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-先安装编译环境需要的软件"><a href="#1-先安装编译环境需要的软件" class="headerlink" title="1.先安装编译环境需要的软件"></a>1.先安装编译环境需要的软件</h2><pre><code>sudo apt-get install openjdk-7-jdk git-core gnupg flex bison gperf build-essential \
+
+zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
+
+lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache \
+
+libgl1-mesa-dev libxml2-utils xsltproc unzip</code></pre><h2 id="2-同步代码"><a href="#2-同步代码" class="headerlink" title="2.同步代码"></a>2.同步代码</h2><pre><code>#新建目录
+mkdir workspace
+cd workspace
+#链接为清华镜像，--repo-url是repo工具的地址，--no-repo-verify关闭repo工具验证
+repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-6.0.1_r79 --repo-url=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo --no-repo-verify
+#-d用清单文件里的版本；-c当前分支；--no-tags不拉取tag
+repo sync -d -c --no-tags</code></pre><h2 id="3-开始编译"><a href="#3-开始编译" class="headerlink" title="3.开始编译"></a>3.开始编译</h2><pre><code>#初始化环境
+source build/envsetup.sh
+#选择产品
+lunch
+#用16线程编译
+make -j16</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/07/30/git-submodule-e9-97-ae-e9-a2-98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jay">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永希">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/30/git-submodule-e9-97-ae-e9-a2-98/" class="post-title-link" itemprop="url">git submodule问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-07-30 12:34:31" itemprop="dateCreated datePublished" datetime="2017-07-30T12:34:31+08:00">2017-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/%E5%B0%8F%E6%8F%90%E7%A4%BA/" itemprop="url" rel="index"><span itemprop="name">小提示</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有一个不在.gitmodule文件中的submodule在更新，解决办法就是</p>
+<pre><code>git ls-files --stage | grep 160000</code></pre><p>这可以看到所有的Submodule文件，然后</p>
+<pre><code>git rm --cached PATH</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/05/08/e5-85-b3-e4-ba-8eandroid-cpu-e6-9e-b6-e6-9e-84-e4-ba-a7-e7-94-9f-e7-9a-84-e5-ba-94-e7-94-a8-e8-bf-90-e8-a1-8c-e5-bc-82-e5-b8-b8-e9-97-ae-e9-a2-98-e6-8f-90-e7-a4-ba/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jay">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永希">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/08/e5-85-b3-e4-ba-8eandroid-cpu-e6-9e-b6-e6-9e-84-e4-ba-a7-e7-94-9f-e7-9a-84-e5-ba-94-e7-94-a8-e8-bf-90-e8-a1-8c-e5-bc-82-e5-b8-b8-e9-97-ae-e9-a2-98-e6-8f-90-e7-a4-ba/" class="post-title-link" itemprop="url">关于Android CPU架构产生的应用运行异常问题提示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-05-08 11:11:48" itemprop="dateCreated datePublished" datetime="2017-05-08T11:11:48+08:00">2017-05-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/%E5%B0%8F%E6%8F%90%E7%A4%BA/" itemprop="url" rel="index"><span itemprop="name">小提示</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Android开发中，不可避免的可能会引用到外部so文件，设置一个项目中可能需要引用多个不同的外部so文件。因为不同的引入库中so文件的目录可能不同，导致打包后生成的项目lib目录中的目录结构是不同的外部so文件目录的合集。可能会出现armeabi/armeabi-v7a/arm64-v8a/x86/mips等，一般情况下，armeabi应该是有的，当此三个目录下的文件可能不同时，在某些特定机型下很可能会出现<strong>UnsatisfiedLinkError</strong>。</p>
+<p>原因在于不同的机型CPU结构不同导致搜寻不同的目录下面的包，而由于外部库不同的so文件目录可能armeabi下还有a、b so文件，而x86下可能只含有a。例如一个应用armeabi下有<code>liba.so</code>、<code>libb.so</code>，arm64-v8a下有<code>liba.so</code>这样的应用装在arm64的设备上，当代码掉到加载libb.so时就会有上面的异常出现，即便是armeabi下有此so，系统也不会去寻找，原因是这个apk中已经有arm64的目录了。</p>
+<p>此时解决方案如下：</p>
+<p>在build.gradle中添加如下内容</p>
+<pre><code>android {
+    defaultConfig {
+        ndk {
+            abiFilters &apos;armeabi&apos;
+        }
+    }
+}</code></pre><p>这样生成的apk中就只包含armeabi下的so文件，而不包含其他架构的目录，这样系统会采取兼容模式，加载armeabi下的so文件。</p>
 
       
     </div>
@@ -634,7 +800,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/02/10/ldap/">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/04/21/e9-9d-9eandroid-studio-e5-b7-a5-e7-a8-8b-e9-a1-b9-e7-9b-ae-e7-bb-93-e6-9e-84build-gradle-e8-84-9a-e6-9c-ac-e7-a4-ba-e4-be-8b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -648,7 +814,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2017/02/10/ldap/" class="post-title-link" itemprop="url">搭建ldap服务器并认证登陆linux系统</a>
+            <a href="/2017/04/21/e9-9d-9eandroid-studio-e5-b7-a5-e7-a8-8b-e9-a1-b9-e7-9b-ae-e7-bb-93-e6-9e-84build-gradle-e8-84-9a-e6-9c-ac-e7-a4-ba-e4-be-8b/" class="post-title-link" itemprop="url">非android studio工程项目结构build.gradle脚本示例</a>
         </h2>
 
         <div class="post-meta">
@@ -658,15 +824,24 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-02-10 16:27:33" itemprop="dateCreated datePublished" datetime="2017-02-10T16:27:33+08:00">2017-02-10</time>
+              <time title="Created: 2017-04-21 17:45:52" itemprop="dateCreated datePublished" datetime="2017-04-21T17:45:52+08:00">2017-04-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
 
           
 
@@ -679,43 +854,60 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>1.搭建ldap服务器</p>
-<p>在终端输入下面的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunny@server1:~$ sudo apt-get install slapd ldap-utils</span><br></pre></td></tr></table></figure>
+          <pre><code>buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath &apos;com.android.tools.build:gradle:2.2.1&apos;
+    }
+}
+apply plugin: &apos;com.android.application&apos;
 
-<p>填入相应的信息。如果相重新填写执行<code>sudo dpkg-reconfigure slapd</code></p>
-<p>安装管理工具：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunny@server1:~$ sudo apt-get install phpldapadmin</span><br></pre></td></tr></table></figure>
+allprojects {
+    repositories {
 
-<p>修改配置文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunny@server1:~$ sudo vim /etc/phpldapadmin/config.php</span><br></pre></td></tr></table></figure>
+    }
+}
 
-<p>在<code>$servers-&gt;setValue(&#39;server&#39;,&#39;base&#39;,array(&#39;dc=example,dc=com&#39;));</code>以及<code>$servers-&gt;setValue(&#39;login&#39;,&#39;bind_id&#39;,&#39;cn=admin,dc=example,dc=com&#39;);</code>位置将<code>dc=example,dc=com</code>修改为上面配置slapd时填入的域名。</p>
-<p>登入管理页面<code>http://localhost/phpldapadmin</code></p>
-<p>创建People和group对象，并建立群组和用户实例。</p>
-<p>2.ldap认证登陆</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunny@server2:~$ sudo apt-get install ldap-auth-client nscd</span><br></pre></td></tr></table></figure>
+dependencies {
+    compile fileTree(include: &apos;*.jar&apos;, dir: &apos;libs&apos;)
+}
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LDAP server Uniform Resource Identifier: ldap://LDAP-server-IP-Address</span><br><span class="line">将默认的"ldapi:///"修改为"ldap://"</span><br><span class="line">Distinguished name of the search base:填入上面"dc=example,dc=com"部分</span><br><span class="line">LDAP version to use: 3</span><br><span class="line">Make local root Database admin: No</span><br><span class="line">Does the LDAP database require login? No</span><br><span class="line">LDAP account for root:填入上面"cn=admin,dc=example,dc=com"部分</span><br><span class="line">LDAP root account password: 你的ldap管理密码</span><br></pre></td></tr></table></figure>
+repositories{
+    flatDir {
+        dirs &apos;libs&apos;
+    }
+}
 
-<p>如果想重新配置执行<code>sunny@server2:~$ sudo dpkg-reconfigure ldap-auth-config</code></p>
-<p>编辑文件<code>nsswitch.conf</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nsswitch.conf</span><br></pre></td></tr></table></figure>
+android {
+    compileSdkVersion 23
+    buildToolsVersion &quot;24.0.0&quot;
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">passwd: files ldap</span><br><span class="line">group: files ldap</span><br><span class="line">shadow: files ldap</span><br></pre></td></tr></table></figure>
+    sourceSets {
+        main {
+            manifest.srcFile &apos;AndroidManifest.xml&apos;
+            java.srcDirs = [&apos;src&apos;]
+            resources.srcDirs = [&apos;src&apos;]
+            aidl.srcDirs = [&apos;src&apos;]
+            renderscript.srcDirs = [&apos;src&apos;]
+            res.srcDirs = [&apos;res&apos;]
+            assets.srcDirs = [&apos;assets&apos;]
+        }
 
-<p>上面三部分需要包含ldap</p>
-<p>编辑文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunny@server2:~$ sudo vim /etc/pam.d/common-session</span><br></pre></td></tr></table></figure>
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot(&apos;tests&apos;)
 
-<p>在行尾填入如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session required    pam_mkhomedir.so skel&#x3D;&#x2F;etc&#x2F;skel umask&#x3D;0022</span><br></pre></td></tr></table></figure>
-
-<p>重启服务：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nscd restart</span><br></pre></td></tr></table></figure>
-
-<p>这样这台服务器就可以通过server1的ldap中配置的用户登陆了。</p>
-
+        // Move the build types to build-types/&lt;type&gt;
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/&lt;type&gt;/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot(&apos;build-types/debug&apos;)
+        release.setRoot(&apos;build-types/release&apos;)
+    }
+}</code></pre>
       
     </div>
 
@@ -734,7 +926,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/02/09/how-to-setup-gerrit-server/">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/04/12/pk8-e5-92-8cx509-pem-e8-bd-ac-e6-8d-a2-e6-88-90keystore/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -748,7 +940,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2017/02/09/how-to-setup-gerrit-server/" class="post-title-link" itemprop="url">怎样搭建本地AOSP Gerrit服务器</a>
+            <a href="/2017/04/12/pk8-e5-92-8cx509-pem-e8-bd-ac-e6-8d-a2-e6-88-90keystore/" class="post-title-link" itemprop="url">pk8和x509.pem转换成keystore</a>
         </h2>
 
         <div class="post-meta">
@@ -758,15 +950,24 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-02-09 16:17:33" itemprop="dateCreated datePublished" datetime="2017-02-09T16:17:33+08:00">2017-02-09</time>
+              <time title="Created: 2017-04-12 20:33:11" itemprop="dateCreated datePublished" datetime="2017-04-12T20:33:11+08:00">2017-04-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
 
           
 
@@ -779,76 +980,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在这个教程里，我会介绍怎样搭建一个本地Android源码Gerrit服务器。</p>
-<p>完成这个教程后，你会拥有一个完全可运行的AOSP镜像和本地Gerrit服务器。</p>
-<p>首先我们需要一个Linux服务器。这里用Ubuntu 14.04</p>
-<p>Gerrit 需求：</p>
-<p>1.Java JDK &gt; 1.7</p>
-<p>2.Git</p>
-<p>3.SSH server</p>
-<p>4.DB</p>
-<p>我选择mysql作为数据库服务，当然你也可以用其他的数据库软件。可以参考Gerrit<a href="https://gerrit.googlecode.com/svn/documentation/2.0/install.html#setting_up_the_database" target="_blank" rel="noopener">文档</a></p>
-<p>这里有一句命令可以让你得到你所需要的一切。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install git openjdk-8-jdk openssh-server mysql-server gitweb</span></span><br></pre></td></tr></table></figure>
-
-<p>下载并安装Android repo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo curl https://storage.googleapis.com/git-repo-downloads/repo &gt; /usr/bin/repo</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod a+x /usr/bin</span></span><br></pre></td></tr></table></figure>
-
-<p>现在我们需要设置一个本地Android镜像，这需要一段时间，你可以先去喝杯咖啡。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p /usr/<span class="built_in">local</span>/aosp/mirror</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/aosp/mirror</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://android.googlesource.com/mirror/manifest --mirror</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync</span></span><br></pre></td></tr></table></figure>
-
-<p>下载<a href="http://gerrit-releases.storage.googleapis.com/index.html" target="_blank" rel="noopener">Gerrit</a></p>
-<p>创建一个Gerrit用户</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo adduser --system --shell /bin/bash --gecos <span class="string">'Gerrit Code Review User'</span> --group --disabled-password --home /home/gerrit2 gerrit2</span></span><br></pre></td></tr></table></figure>
-
-<p>Gerrit需要一个数据库来工作，这里用的是mysql。打开终端输入以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysql -u root -p</span></span><br><span class="line">CREATE USER 'gerrit2'@'localhost' IDENTIFIED BY 'secret';</span><br><span class="line">CREATE DATABASE reviewdb;</span><br><span class="line">ALTER DATABASE reviewdb charset=latin1;</span><br><span class="line">GRANT ALL ON reviewdb.* TO 'gerrit2'@'localhost';</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
-
-<p>上面这个命令在mysql中创建了一个gerrit用户，一个数据库和gerrit用户需要的权限集合。</p>
-<p>用新的系统用户登陆：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo su gerrit2</span></span><br></pre></td></tr></table></figure>
-
-<p>复制上面下载的文件<code>gerrit-2.13.5.war</code>到gerrit2的home下，然后执行下面的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> java -jar ./gerrit-2.11.war init -d review_site</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">Using secure store: com.google.gerrit.server.securestore.DefaultSecureStore</span><br><span class="line"></span><br><span class="line">*** Gerrit Code Review 2.11</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Create ‘/home/gerrit2/review_site’ [Y/n]?</span><br><span class="line"></span><br><span class="line">*** Git Repositories</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Location of Git repositories [git]:</span><br><span class="line"></span><br><span class="line">*** SQL Database</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Database server type [h2]: MySQL</span><br><span class="line"></span><br><span class="line">Gerrit Code Review is not shipped with MySQL Connector/J 5.1.21</span><br><span class="line">** This library is required for your configuration. **</span><br><span class="line">Download and install it now [Y/n]?</span><br><span class="line">Downloading http://repo2.maven.org/maven2/mysql/mysql-connector-java/5.1.21/mysql-connector-java-5.1.21.jar … OK</span><br><span class="line">Checksum mysql-connector-java-5.1.21.jar OK</span><br><span class="line">Server hostname [localhost]:</span><br><span class="line">Server port [(mysql default)]:</span><br><span class="line">Database name [reviewdb]:</span><br><span class="line">Database username [gerrit2]: gerrit2</span><br><span class="line">gerrit’s password :</span><br><span class="line">confirm password :</span><br><span class="line"></span><br><span class="line">*** Index</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Type [LUCENE/?]:</span><br><span class="line"></span><br><span class="line">*** User Authentication</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Authentication method [OPENID/?]:</span><br><span class="line"></span><br><span class="line">*** Review Labels</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Install Verified label [y/N]?</span><br><span class="line"></span><br><span class="line">*** Email Delivery</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">SMTP server hostname [localhost]:</span><br><span class="line">SMTP server port [(default)]:</span><br><span class="line">SMTP encryption [NONE/?]:</span><br><span class="line">SMTP username :</span><br><span class="line"></span><br><span class="line">*** Container Process</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Run as [gerrit2]:</span><br><span class="line">Java runtime [/usr/lib/jvm/java-8-openjdk-amd64/jre]:</span><br><span class="line">Copy gerrit-2.11.war to /home/gerrit2/review_site/bin/gerrit.war [Y/n]?</span><br><span class="line">Copying gerrit-2.11.war to /home/gerrit2/review_site/bin/gerrit.war</span><br><span class="line">*** SSH Daemon</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Listen on address [*]:</span><br><span class="line">Listen on port [29418]:</span><br><span class="line"></span><br><span class="line">Gerrit Code Review is not shipped with Bouncy Castle Crypto SSL v151</span><br><span class="line">If available, Gerrit can take advantage of features</span><br><span class="line">in the library, but will also function without it.</span><br><span class="line">Download and install it now [Y/n]?</span><br><span class="line">Downloading http://www.bouncycastle.org/download/bcpkix-jdk15on-151.jar … OK</span><br><span class="line">Checksum bcpkix-jdk15on-151.jar OK</span><br><span class="line">Generating SSH host key … rsa… dsa… done</span><br><span class="line"></span><br><span class="line">*** HTTP Daemon</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Behind reverse proxy [y/N]?</span><br><span class="line">Use SSL (https://) [y/N]?</span><br><span class="line">Listen on address [*]:</span><br><span class="line">Listen on port [8080]:</span><br><span class="line">Canonical URL [http://ubuntu:8080/]: http://10.0.0.9:8080</span><br><span class="line"></span><br><span class="line">*** Plugins</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Installing plugins.</span><br><span class="line">Install plugin download-commands version v2.11 [y/N]?</span><br><span class="line">Install plugin reviewnotes version v2.11 [y/N]?</span><br><span class="line">Install plugin singleusergroup version v2.11 [y/N]?</span><br><span class="line">Install plugin replication version v2.11 [y/N]?</span><br><span class="line">Install plugin commit-message-length-validator version v2.11 [y/N]?</span><br><span class="line">Initializing plugins.</span><br><span class="line">No plugins found with init steps.</span><br><span class="line"></span><br><span class="line">Initialized /home/gerrit2/review_site</span><br><span class="line">Executing /home/gerrit2/review_site/bin/gerrit.sh start</span><br><span class="line">Starting Gerrit Code Review: OK</span><br><span class="line">Waiting for server on ubuntu:8080 … OK</span><br><span class="line">Opening http://10.0.0.9:8080/#/admin/projects/ …FAILED</span><br><span class="line">Open Gerrit with a JavaScript capable browser:</span><br><span class="line">http://10.0.0.9:8080/#/admin/projects/</span><br></pre></td></tr></table></figure>
-
-<p>现在Gerrit已经开始运行了。</p>
-<p>需要注意的是，第一个登陆到gerrit的用户将会成为管理员。</p>
-<p>Gerrit能通过多种认证方式登陆。上面选择的OpenID。</p>
-<p>现在让我们打开浏览器并打开Gerrit网站。</p>
-<p>注册并登陆后需要设置SSH keys，这样我们就能够在命令行下工作。</p>
-<p>下面我们在Ubuntu系统的另一个用户下执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen &lt;ENTER&gt;</span></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/serveradmin/.ssh/id_rsa):  &lt;ENTER&gt;</span><br><span class="line">Enter passphrase (empty for no passphrase): &lt;ENTER&gt;</span><br><span class="line">Enter same passphrase again: &lt;ENTER&gt;</span><br><span class="line">Your identification has been saved in /home/serveradmin/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /home/serveradmin/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">d5:7b:51:d8:22:0e:95:63:f9:0e:a2:22:1c:97:76:40 serveradmin@ubuntu</span><br><span class="line">The key's randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">| .E ..o o.|</span><br><span class="line">| . ..* o..|</span><br><span class="line">| o .+.+.. |</span><br><span class="line">| . + ... o... |</span><br><span class="line">| . + .S. ..o. |</span><br><span class="line">| o . . .. |</span><br><span class="line">| . . |</span><br><span class="line">| |</span><br><span class="line">| |</span><br><span class="line">+-----------------+</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat ~/.ssh/id_rsa.pub  &lt;ENTER&gt;</span></span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDobCUbb8ExP9ci48ZCzCUE3P+IjoH6zrv/l88+4NOTf9FJWDAl4SHCXI+mrZoFEeZo9</span><br><span class="line">uieKTuvHqUFQNpnVA9vfNY6bhaTucAAt0fX9Q1M1ZtNj2IxaQd7u9PnxjSGEig0BUtjqDEu4CMhMShXGWsGAwL7ju/qu7G7RF</span><br><span class="line">iK/Wtcye6wUSjziXseCusb1DUZZ6dsOpxrPYEM3kwXpItQtAq1oEIQWsxEgj2nrOqRXm1UWdqIQU1X45XHQtg5iqi44PfLVNU</span><br><span class="line">3alu453MeWn5PrpSS5dFw/7AkBW4KMPwrOvVnu8gb9xLA0TWtPf+sQ9ROEQC5SBeO+4Q9XRNf5YaswpLj</span><br></pre></td></tr></table></figure>
-
-<p>在网站的右上角点击你的用户名然后点击Settings，在左侧的菜单中选择“SSH Public Keys”，复制上面的内容到里面，然后点Add。</p>
-<p>下面让我们测试一下通过SSH访问Gerrit：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 29418 admin@localhost &lt;ENTER&gt; &lt;Change "admin" to your username in gerrit&gt;</span><br><span class="line"></span><br><span class="line">**** Welcome to Gerrit Code Review ****</span><br><span class="line"></span><br><span class="line">Hi Administrator, you have successfully connected over SSH.</span><br><span class="line"></span><br><span class="line">Unfortunately, interactive shells are disabled.</span><br><span class="line">To clone a hosted Git repository, use:</span><br><span class="line"></span><br><span class="line">git clone ssh://ramon@10.0.0.9:29418/REPOSITORY_NAME.git</span><br><span class="line">Connection to localhost closed.</span><br></pre></td></tr></table></figure>
-
-<p>出现以上信息说明登陆成功，下面创建两个group：“android-admin” and “android”</p>
-<p>前者用来管理，包含review，merge，delete等权限，后者只有view和change-set的权限。</p>
-<p>在网页中点击People -&gt; Create New Group，输入名称“android-admin”。执行同样的操作创建“android”。</p>
-<p>现在我们为AOSP代码树创建一个父项目。所有为这个项目的设置都会继承到子项目。如果跳过这步，AOSP项目会继承“All-Projects”项目，而这个项目太通用了。</p>
-<p>在网站中点击Project -&gt; Create New Project，填入以下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Project Name: Android</span><br><span class="line">Rights Inherit From: All-Projects</span><br></pre></td></tr></table></figure>
-
-<p>勾选 “Only Serve As Parent For Other Projects”，然后点击“Create Project”按钮。</p>
-<p>项目已经创建完，下面来为这个项目设置权限控制：</p>
-<p>点击Projects -&gt; List，然后选择“Android”项目，点击“Access”然后点击“Edit”，修改成如下图。图中还包含了其他的群组，可自行设置。</p>
-<p><img src="https://crazystar.net/images/gerrit.png" alt="Gerrit权限控制"></p>
-<p>现在我们可以把所有的Android项目推送到Gerrit了。</p>
-<p>第一条命令会在Gerrit上创建所有的Android项目；第二条命令会将刚刚创建的项目的父项目修改为“Android”；第三条命令会将代码推送到Gerrit，时间会比较长。</p>
-<p>进入下载Android镜像的目录执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">'echo $REPO_PATH; ssh -p 29418 admin@localhost gerrit create-project --name android/$REPO_PATH --owner android;'</span></span></span><br><span class="line"></span><br><span class="line">accessories/manifest</span><br><span class="line">device/asus/deb</span><br><span class="line">device/asus/flo</span><br><span class="line">device/asus/flo-kernel</span><br><span class="line">device/asus/fugu</span><br><span class="line">device/asus/fugu-kernel</span><br><span class="line">…</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">'echo $REPO_PATH; ssh -p 29418 admin@localhost gerrit set-project-parent --parent Android android/$REPO_PATH;'</span></span></span><br><span class="line"></span><br><span class="line">accessories/manifest</span><br><span class="line">device/asus/deb</span><br><span class="line">device/asus/flo</span><br><span class="line">device/asus/flo-kernel</span><br><span class="line">…</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">'echo $REPO_PATH; git push ssh://ramon@localhost:29418/android/$REPO_PATH +refs/heads/* +refs/tags/*;'</span></span></span><br></pre></td></tr></table></figure>
-
-<p>大功告成！</p>
-<p>创建Gerrit服务自启：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo <span class="built_in">echo</span> <span class="string">"GERRIT_SITE=/opt/gerrit-review"</span> &gt;&gt; /etc/default/gerritcodereview</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ln -snf /opt/gerrit-review/bin/gerrit.sh /etc/init.d/gerrit</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo update-rc.d gerrit defaults</span></span><br></pre></td></tr></table></figure>
-
-<p>下面贴一个gerrit配置文件(postgre数据库，ldap认证，提交信息增加jira链接)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[gerrit]</span><br><span class="line">	basePath &#x3D; git</span><br><span class="line">	canonicalWebUrl &#x3D; http:&#x2F;&#x2F;localhost:8080&#x2F;</span><br><span class="line">[database]</span><br><span class="line">	type &#x3D; postgresql</span><br><span class="line">	hostname &#x3D; localhost</span><br><span class="line">	database &#x3D; reviewdb</span><br><span class="line">	username &#x3D; gerrit2</span><br><span class="line">[index]</span><br><span class="line">	type &#x3D; LUCENE</span><br><span class="line">[auth]</span><br><span class="line">	type &#x3D; LDAP</span><br><span class="line">[ldap]</span><br><span class="line">	server &#x3D; ldap:&#x2F;&#x2F;localhost:389</span><br><span class="line">	username &#x3D; cn&#x3D;admin,dc&#x3D;darkerthanblack,dc&#x3D;org</span><br><span class="line">	accountBase &#x3D; ou&#x3D;People,dc&#x3D;darkerthanblack,dc&#x3D;org</span><br><span class="line">	groupBase &#x3D; ou&#x3D;group,dc&#x3D;darkerthanblack,dc&#x3D;org</span><br><span class="line">[receive]</span><br><span class="line">	enableSignedPush &#x3D; false</span><br><span class="line">[sendemail]</span><br><span class="line">	smtpServer &#x3D; smtp.exmail.qq.com</span><br><span class="line">	smtpServerPort &#x3D; 465</span><br><span class="line">	smtpEncryption &#x3D; SSL</span><br><span class="line">	smtpUser &#x3D; example@example.com</span><br><span class="line">        smtpPass &#x3D; your_password</span><br><span class="line">        from &#x3D; example@example.com</span><br><span class="line">[container]</span><br><span class="line">	user &#x3D; gerrit2</span><br><span class="line">	javaHome &#x3D; &#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;java-8-openjdk-amd64&#x2F;jre</span><br><span class="line">[sshd]</span><br><span class="line">	listenAddress &#x3D; *:29418</span><br><span class="line">	maxConnectionsPerUser &#x3D; 0</span><br><span class="line">[httpd]</span><br><span class="line">	listenUrl &#x3D; http:&#x2F;&#x2F;*:8080&#x2F;</span><br><span class="line">[cache]</span><br><span class="line">	directory &#x3D; cache</span><br><span class="line">[gitweb]</span><br><span class="line">	cgi &#x3D; &#x2F;usr&#x2F;lib&#x2F;cgi-bin&#x2F;gitweb.cgi</span><br><span class="line">[commentlink &quot;jira&quot;]</span><br><span class="line">	match &#x3D; ([A-Z]+-[0-9]+)</span><br><span class="line">	link &#x3D; http:&#x2F;&#x2F;localhost:8081&#x2F;browse&#x2F;$1</span><br></pre></td></tr></table></figure>
-
-
+          <p>一、 在github上下载工具 <a href="https://github.com/getfatday/keytool-importkeypair" target="_blank" rel="noopener">https://github.com/getfatday/keytool-importkeypair</a> 将工具在Linux环境下解压或者解压后Copy到Linux下，运行如下命令</p>
+<pre><code>keytool-importkeypair -k android/debug.keystore -p android -pk8 android/platform.pk8 -cert android/platform.x509.pem -alias androiddebugkey</code></pre><p>二、 1 把pk8转换成pk12格式</p>
+<pre><code>openssl pkcs8 -in platform.pk8 -inform DER -outform PEM -out platform.priv.pem -nocrypt</code></pre><p>2 生成pk12的密钥问文件</p>
+<pre><code>openssl pkcs12 -export -in platform.x509.pem -inkey platform.priv.pem -out platform.pk12 -name androiddebugkey</code></pre><p>3 生成keystore</p>
+<pre><code>keytool -importkeystore -deststorepass android -destkeypass android -destkeystore debug.keystore -srckeystore platform.pk12 -srcstoretype PKCS12 -srcstorepass android -alias androiddebugkey</code></pre>
       
     </div>
 
@@ -867,7 +1003,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2016/12/26/kvm/">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/04/12/activity-e4-b8-adonactivityresult-e5-ad-98-e5-9c-a8-e7-9a-84-e5-9d-91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -881,7 +1017,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/12/26/kvm/" class="post-title-link" itemprop="url">KVM</a>
+            <a href="/2017/04/12/activity-e4-b8-adonactivityresult-e5-ad-98-e5-9c-a8-e7-9a-84-e5-9d-91/" class="post-title-link" itemprop="url">Activity中onActivityResult存在的坑</a>
         </h2>
 
         <div class="post-meta">
@@ -891,15 +1027,24 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-12-26 13:37:33" itemprop="dateCreated datePublished" datetime="2016-12-26T13:37:33+08:00">2016-12-26</time>
+              <time title="Created: 2017-04-12 10:40:16" itemprop="dateCreated datePublished" datetime="2017-04-12T10:40:16+08:00">2017-04-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-25 19:06:41" itemprop="dateModified" datetime="2020-05-25T19:06:41+08:00">2020-05-25</time>
+                <time title="Modified: 2020-05-26 10:13:58" itemprop="dateModified" datetime="2020-05-26T10:13:58+08:00">2020-05-26</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
 
           
 
@@ -912,44 +1057,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一、安装kvm"><a href="#一、安装kvm" class="headerlink" title="一、安装kvm"></a>一、安装kvm</h2><ol>
-<li><code>$ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils</code></li>
-<li><code>$ sudo adduser `id -un` libvirtd</code></li>
-<li>验证安装:<br><code>$ virsh -c qemu:///system list</code><br>没有错误信息就表明安装成功！<br>确认如下两个文件的权限正确：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ls -la &#x2F;var&#x2F;run&#x2F;libvirt&#x2F;libvirt-sock</span><br><span class="line">srwxrwx--- 1 root libvirtd 0 2010-08-24 14:54 &#x2F;var&#x2F;run&#x2F;libvirt&#x2F;libvirt-sock</span><br><span class="line">$ ls -l &#x2F;dev&#x2F;kvm</span><br><span class="line">crw-rw----+ 1 root kvm 10, 232 Jul  8 22:04 &#x2F;dev&#x2F;kvm</span><br></pre></td></tr></table></figure></li>
-<li>安装完毕后，会自动生成虚拟网卡 virbr0，可以通过 ifconfig 查看确认一下</li>
-<li>创建网卡桥接<br><code>$ sudo vi /etc/network/interfaces</code><br>增加如下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto br0</span><br><span class="line">iface br0 inet static</span><br><span class="line">address 192.168.0.222</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.0.1</span><br><span class="line">bridge_ports eth0</span><br></pre></td></tr></table></figure>
-保存，重启网卡设置，<code>ifconfig</code> 再查看网卡的设置，这个时候 eth0 已经没有具体的IP地址，IP地址出在了 br0 的虚拟网上面。<br>安装后，默认的目录为：<code>/etc/libvirt/qemu/</code></li>
-</ol>
-<h2 id="二、kvm-虚拟机的日常管理"><a href="#二、kvm-虚拟机的日常管理" class="headerlink" title="二、kvm 虚拟机的日常管理"></a>二、kvm 虚拟机的日常管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">virsh list --all &gt; 查看虚拟机状态</span><br><span class="line">virsh start [name] &gt; 开机</span><br><span class="line">virsh shutdown [name] &gt; 关机</span><br><span class="line">virsh destroy [name] &gt; 强制关闭电源</span><br><span class="line">virsh reboot[name] &gt; 关机</span><br><span class="line">virsh suspend [name] &gt; 挂起服务器</span><br><span class="line">virsh resume [name] &gt; 恢复服务器</span><br><span class="line">virsh autostart [name] &gt; 配置开机自启动虚拟机 （&#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;autostart&#x2F;）</span><br><span class="line">virsh undefine [name] &gt; 删除虚拟机 (只删除配置文件，并不删除虚拟磁盘文件)</span><br><span class="line">virsh create &#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;[name].xml &gt; 通过配置文件启动虚拟机</span><br><span class="line">virsh dumpxml [name] &gt; &#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;[name].xml &gt; 导出KVM虚拟机配置文件(可通过这种方式进行备份)</span><br><span class="line">virsh edit [name] &gt; 编辑虚拟机配置文件(&#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;[name].xml，不建议直接通过vi编辑)</span><br><span class="line">virsh --version &gt; 查看虚拟工具版本</span><br><span class="line">virt-install --version &gt; 查看虚拟工具版本</span><br><span class="line">qemu-kvm -version &gt; 查看虚拟工具版本</span><br></pre></td></tr></table></figure>
-<p>注：virsh 命令丰富，可以执行各种维护任务。</p>
-<h2 id="三、安装-Win2003SP2-虚拟机"><a href="#三、安装-Win2003SP2-虚拟机" class="headerlink" title="三、安装 Win2003SP2 虚拟机"></a>三、安装 Win2003SP2 虚拟机</h2><ol>
-<li><p>上传系统 iso 文件到 <code>/file/tools/win/win2003/WIN_2003_SP2.iso</code></p>
-</li>
-<li><p>开始安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ virt-install --name&#x3D;win2003sp2 \</span><br><span class="line">--hvm \</span><br><span class="line">--ram 1024 \</span><br><span class="line">--vcpus&#x3D;1 \</span><br><span class="line">--os-type&#x3D;windows \</span><br><span class="line">--os-variant&#x3D;win2k3 \</span><br><span class="line">--arch&#x3D;x86_64 \</span><br><span class="line">--disk path&#x3D;&#x2F;file&#x2F;kvm&#x2F;win2003sp2&#x2F;win2003sp2.img,size&#x3D;20 \</span><br><span class="line">--network bridge&#x3D;br0 \</span><br><span class="line">--accelerate \</span><br><span class="line">--graphics vnc,listen&#x3D;0.0.0.0,port&#x3D;5911 \</span><br><span class="line">--cdrom &#x2F;file&#x2F;tools&#x2F;win&#x2F;win2003&#x2F;WIN_2003_SP2.iso \</span><br><span class="line">--boot cdrom</span><br></pre></td></tr></table></figure>
-<p>参数说明:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">--name      指定虚拟机名称</span><br><span class="line">--hvm        使用全虚拟化（与--paravirt相对）</span><br><span class="line">--ram        分配内存大小，单位为 MB</span><br><span class="line">--vcpus     分配CPU核心数，最大与实体机CPU核心数相同</span><br><span class="line">--disk        指定虚拟机使用的磁盘，path 指定路径，size 指定大小，单位为G</span><br><span class="line">--network  网络设置，使用默认配置时可设为 &quot;--network network:default&quot;</span><br><span class="line">--accelerate 加速</span><br><span class="line">--graphics vnc,listen&#x3D;0.0.0.0,port&#x3D;5911   指定VNC监控端口、绑定IP，默认端口为5900，端口不能重复；IP 默认绑定127.0.0.1，这里改为 0.0.0.0</span><br><span class="line">--cdrom     指定安装镜像iso设置光驱获取虚拟光驱文件的路径</span><br><span class="line">--os-type&#x3D;windows </span><br><span class="line">--os-variant&#x3D;win2k3 </span><br><span class="line">--arch&#x3D;x86_64 </span><br><span class="line">--boot cdrom 指定从 cdrom 启动，从硬盘启动时设为 hd</span><br><span class="line">--autostart      指定主机启动时自动启动此虚拟机</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将虚拟机的启动方式改为从磁盘启动<br><code>$ virsh edit win2003sp3</code></p>
-</li>
-</ol>
-<p>将 <code>&lt;boot dev=&#39;cdrom&#39;/&gt;</code>改为 <code>&lt;boot dev=&#39;hd&#39;/&gt;</code><br>然后重新启动虚拟机：<br><code>$virsh destroy win2003sp3</code><br><code>$virsh start win2003sp3</code><br>之后就可以重新使用 vnc 连接，继续安装过程。<br>4. 安装完毕后按需要设置IP地址、远程连接等即可</p>
-<h2 id="四、KVM-克隆"><a href="#四、KVM-克隆" class="headerlink" title="四、KVM 克隆"></a>四、KVM 克隆</h2><p>复制已经安装好的虚拟机为另一个全新的虚拟机。如要将上面的 win2003sp2 复制为 win2003sp2-2：</p>
-<ol>
-<li>关闭 win2003sp2<br><code>$virsh shutdown win2003sp2</code></li>
-<li>克隆 win2003sp2-2<br><code>$virt-clone -o win2003sp2 -n win2003sp2-2 -f /file/kvm/win2003sp2/win2003sp2-2.img</code><br>如果虚拟机文件比较大，复制的时间就会比较长。</li>
-<li>修改 win2003sp2-2.xml 文件<br>修改 vnc 端口避免与 win2003sp2 重复。<br><code>$virsh edit win2003sp2-2</code><br><code>&lt;graphics type=&#39;vnc&#39; port=&#39;5912&#39; autoport=&#39;no&#39; listen=&#39;0.0.0.0&#39;&gt;</code></li>
-<li>启动 win2003sp2-2<br><code>$virsh start win2003sp2-2</code><br>最后利用 vnc 登录到 win2003sp2-2 之后，修改网络设置，避免 IP 冲突。</li>
-</ol>
-<h2 id="五、KVM-快照"><a href="#五、KVM-快照" class="headerlink" title="五、KVM 快照"></a>五、KVM 快照</h2><p>对虚拟机做快照，防止损坏了可以正常恢复。kvm 快照分两种：<br>第1种：lvm 快照，如果分区是 lvm，可以利用 lvm 进行 kvm 的快照备份<br>第2种：由于 raw 格式不支持镜像，所以需要将格式转换为 qcow2 才可以创建快照。<br>第2种具体操作如下：<br>kvm 虚拟机默认使用 raw 格式的镜像格式，性能最好，速度最快，它的缺点就是不支持一些新的功能，如镜像、zlib  磁盘压缩、AES加密等。<br>要使用镜像功能，磁盘格式必须为 qcow2。<br>下面开始 kvm 虚拟机快照备份的过程：</p>
-<ol>
-<li>查看磁盘格式<br><code>$qemu-img info win2003sp2.img</code></li>
-<li>关闭 win2003sp2<br><code>$virsh shutdown win2003sp2</code></li>
-<li>转换磁盘格式<br><code>$qemu-img convert -f raw -O qcow2 win2003sp2.img win2003sp2.img.qcow2</code></li>
-</ol>
-<p>-f  源镜像的格式<br>-O 目标镜像的格式<br>4. 修改虚拟机配置文件，指向新的磁盘格式文件<br><code>$virsh edit win2003sp2</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;devices&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;disk type&#x3D;&#39;file&#39; device&#x3D;&#39;disk&#39;&gt;</span><br><span class="line">    &lt;driver name&#x3D;&#39;qemu&#39; type&#x3D;&#39;qcow2&#39; cache&#x3D;&#39;none&#39;&#x2F;&gt;</span><br><span class="line">    &lt;source file&#x3D;&#39;&#x2F;file&#x2F;kvm&#x2F;win2003sp2&#x2F;win2003sp2.img.qcow2&#39;&#x2F;&gt;</span><br><span class="line">    &lt;target dev&#x3D;&#39;hda&#39; bus&#x3D;&#39;ide&#39;&#x2F;&gt;</span><br><span class="line">    &lt;address type&#x3D;&#39;drive&#39; controller&#x3D;&#39;0&#39; bus&#x3D;&#39;0&#39; target&#x3D;&#39;0&#39; unit&#x3D;&#39;0&#39;&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;disk&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;devices&gt;</span><br></pre></td></tr></table></figure>
-<p>注：转换后镜像文件占用的空间大大减少了，而且日后为动态自动增加，而不是固定占用开始设置时占用的大小。<br>5. 创建快照<br><code>$virsh snapshot-create-as win2003sp2 clean</code><br>6. 查看虚拟机镜像快照的版本<br><code>$virsh snapshot-list win2003sp2</code><br>7. 看当前最新的快照版本<br><code>$virsh snapshot-current win2003sp2</code><br>8. 恢复虚拟机快照<br>恢复虚拟机快照前必须先关闭虚拟机！<br><code>$virsh snapshot-revert win2003sp2 clean</code><br>9. 删除虚拟机快照<br><code>$virsh snapshot-delete win2003sp2 clean</code></p>
+          <p>所有需要传递或接收的 Activity 不允许设置singleInstance，或只能设为标准模式，否则在部分手机上系统将在 startActivityForResult()后直接返回Activity.RESULT_CANCELED，但在某些手机是正常的。</p>
 
       
     </div>
@@ -967,6 +1075,9 @@
 
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -1031,9 +1142,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span>
       </div>
   </nav>
 </div>
