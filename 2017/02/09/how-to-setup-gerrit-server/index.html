@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.darkerthanblack.org","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在这个教程里，我会介绍怎样搭建一个本地Android源码Gerrit服务器。 完成这个教程后，你会拥有一个完全可运行的AOSP镜像和本地Gerrit服务器。 首先我们需要一个Linux服务器。这里用Ubuntu 14.04 Gerrit 需求： 1.Java JDK &gt; 1.7 2.Git 3.SSH server 4.DB 我选择mysql作为数据库服务，当然你也可以用其他的数据库软件。可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="怎样搭建本地AOSP Gerrit服务器">
+<meta property="og:url" content="https://blog.darkerthanblack.org/2017/02/09/how-to-setup-gerrit-server/index.html">
+<meta property="og:site_name" content="永希">
+<meta property="og:description" content="在这个教程里，我会介绍怎样搭建一个本地Android源码Gerrit服务器。 完成这个教程后，你会拥有一个完全可运行的AOSP镜像和本地Gerrit服务器。 首先我们需要一个Linux服务器。这里用Ubuntu 14.04 Gerrit 需求： 1.Java JDK &gt; 1.7 2.Git 3.SSH server 4.DB 我选择mysql作为数据库服务，当然你也可以用其他的数据库软件。可">
+<meta property="og:image" content="https://crazystar.net/images/gerrit.png">
+<meta property="article:published_time" content="2017-02-09T08:17:33.000Z">
+<meta property="article:modified_time" content="2021-03-27T11:39:37.904Z">
+<meta property="article:author" content="Jay">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://crazystar.net/images/gerrit.png">
+
+<link rel="canonical" href="https://blog.darkerthanblack.org/2017/02/09/how-to-setup-gerrit-server/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>怎样搭建本地AOSP Gerrit服务器 | 永希</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">永希</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">生命永远充满希望</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2017/02/09/how-to-setup-gerrit-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jay">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永希">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          怎样搭建本地AOSP Gerrit服务器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-02-09 16:17:33" itemprop="dateCreated datePublished" datetime="2017-02-09T16:17:33+08:00">2017-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-27 19:39:37" itemprop="dateModified" datetime="2021-03-27T19:39:37+08:00">2021-03-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在这个教程里，我会介绍怎样搭建一个本地Android源码Gerrit服务器。</p>
+<p>完成这个教程后，你会拥有一个完全可运行的AOSP镜像和本地Gerrit服务器。</p>
+<p>首先我们需要一个Linux服务器。这里用Ubuntu 14.04</p>
+<p>Gerrit 需求：</p>
+<p>1.Java JDK &gt; 1.7</p>
+<p>2.Git</p>
+<p>3.SSH server</p>
+<p>4.DB</p>
+<p>我选择mysql作为数据库服务，当然你也可以用其他的数据库软件。可以参考Gerrit<a href="https://gerrit.googlecode.com/svn/documentation/2.0/install.html#setting_up_the_database" target="_blank" rel="noopener">文档</a></p>
+<p>这里有一句命令可以让你得到你所需要的一切。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install git openjdk-8-jdk openssh-server mysql-server gitweb</span></span><br></pre></td></tr></table></figure>
+
+<p>下载并安装Android repo</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo curl https://storage.googleapis.com/git-repo-downloads/repo &gt; /usr/bin/repo</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod a+x /usr/bin</span></span><br></pre></td></tr></table></figure>
+
+<p>现在我们需要设置一个本地Android镜像，这需要一段时间，你可以先去喝杯咖啡。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p /usr/<span class="built_in">local</span>/aosp/mirror</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/aosp/mirror</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://android.googlesource.com/mirror/manifest --mirror</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync</span></span><br></pre></td></tr></table></figure>
+
+<p>下载<a href="http://gerrit-releases.storage.googleapis.com/index.html" target="_blank" rel="noopener">Gerrit</a></p>
+<p>创建一个Gerrit用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo adduser --system --shell /bin/bash --gecos <span class="string">'Gerrit Code Review User'</span> --group --disabled-password --home /home/gerrit2 gerrit2</span></span><br></pre></td></tr></table></figure>
+
+<p>Gerrit需要一个数据库来工作，这里用的是mysql。打开终端输入以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysql -u root -p</span></span><br><span class="line">CREATE USER 'gerrit2'@'localhost' IDENTIFIED BY 'secret';</span><br><span class="line">CREATE DATABASE reviewdb;</span><br><span class="line">ALTER DATABASE reviewdb charset=latin1;</span><br><span class="line">GRANT ALL ON reviewdb.* TO 'gerrit2'@'localhost';</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+
+<p>上面这个命令在mysql中创建了一个gerrit用户，一个数据库和gerrit用户需要的权限集合。</p>
+<p>用新的系统用户登陆：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo su gerrit2</span></span><br></pre></td></tr></table></figure>
+
+<p>复制上面下载的文件<code>gerrit-2.13.5.war</code>到gerrit2的home下，然后执行下面的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> java -jar ./gerrit-2.11.war init -d review_site</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">Using secure store: com.google.gerrit.server.securestore.DefaultSecureStore</span><br><span class="line"></span><br><span class="line">*** Gerrit Code Review 2.11</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Create ‘/home/gerrit2/review_site’ [Y/n]?</span><br><span class="line"></span><br><span class="line">*** Git Repositories</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Location of Git repositories [git]:</span><br><span class="line"></span><br><span class="line">*** SQL Database</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Database server type [h2]: MySQL</span><br><span class="line"></span><br><span class="line">Gerrit Code Review is not shipped with MySQL Connector/J 5.1.21</span><br><span class="line">** This library is required for your configuration. **</span><br><span class="line">Download and install it now [Y/n]?</span><br><span class="line">Downloading http://repo2.maven.org/maven2/mysql/mysql-connector-java/5.1.21/mysql-connector-java-5.1.21.jar … OK</span><br><span class="line">Checksum mysql-connector-java-5.1.21.jar OK</span><br><span class="line">Server hostname [localhost]:</span><br><span class="line">Server port [(mysql default)]:</span><br><span class="line">Database name [reviewdb]:</span><br><span class="line">Database username [gerrit2]: gerrit2</span><br><span class="line">gerrit’s password :</span><br><span class="line">confirm password :</span><br><span class="line"></span><br><span class="line">*** Index</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Type [LUCENE/?]:</span><br><span class="line"></span><br><span class="line">*** User Authentication</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Authentication method [OPENID/?]:</span><br><span class="line"></span><br><span class="line">*** Review Labels</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Install Verified label [y/N]?</span><br><span class="line"></span><br><span class="line">*** Email Delivery</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">SMTP server hostname [localhost]:</span><br><span class="line">SMTP server port [(default)]:</span><br><span class="line">SMTP encryption [NONE/?]:</span><br><span class="line">SMTP username :</span><br><span class="line"></span><br><span class="line">*** Container Process</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Run as [gerrit2]:</span><br><span class="line">Java runtime [/usr/lib/jvm/java-8-openjdk-amd64/jre]:</span><br><span class="line">Copy gerrit-2.11.war to /home/gerrit2/review_site/bin/gerrit.war [Y/n]?</span><br><span class="line">Copying gerrit-2.11.war to /home/gerrit2/review_site/bin/gerrit.war</span><br><span class="line">*** SSH Daemon</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Listen on address [*]:</span><br><span class="line">Listen on port [29418]:</span><br><span class="line"></span><br><span class="line">Gerrit Code Review is not shipped with Bouncy Castle Crypto SSL v151</span><br><span class="line">If available, Gerrit can take advantage of features</span><br><span class="line">in the library, but will also function without it.</span><br><span class="line">Download and install it now [Y/n]?</span><br><span class="line">Downloading http://www.bouncycastle.org/download/bcpkix-jdk15on-151.jar … OK</span><br><span class="line">Checksum bcpkix-jdk15on-151.jar OK</span><br><span class="line">Generating SSH host key … rsa… dsa… done</span><br><span class="line"></span><br><span class="line">*** HTTP Daemon</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Behind reverse proxy [y/N]?</span><br><span class="line">Use SSL (https://) [y/N]?</span><br><span class="line">Listen on address [*]:</span><br><span class="line">Listen on port [8080]:</span><br><span class="line">Canonical URL [http://ubuntu:8080/]: http://10.0.0.9:8080</span><br><span class="line"></span><br><span class="line">*** Plugins</span><br><span class="line">***</span><br><span class="line"></span><br><span class="line">Installing plugins.</span><br><span class="line">Install plugin download-commands version v2.11 [y/N]?</span><br><span class="line">Install plugin reviewnotes version v2.11 [y/N]?</span><br><span class="line">Install plugin singleusergroup version v2.11 [y/N]?</span><br><span class="line">Install plugin replication version v2.11 [y/N]?</span><br><span class="line">Install plugin commit-message-length-validator version v2.11 [y/N]?</span><br><span class="line">Initializing plugins.</span><br><span class="line">No plugins found with init steps.</span><br><span class="line"></span><br><span class="line">Initialized /home/gerrit2/review_site</span><br><span class="line">Executing /home/gerrit2/review_site/bin/gerrit.sh start</span><br><span class="line">Starting Gerrit Code Review: OK</span><br><span class="line">Waiting for server on ubuntu:8080 … OK</span><br><span class="line">Opening http://10.0.0.9:8080/#/admin/projects/ …FAILED</span><br><span class="line">Open Gerrit with a JavaScript capable browser:</span><br><span class="line">http://10.0.0.9:8080/#/admin/projects/</span><br></pre></td></tr></table></figure>
+
+<p>现在Gerrit已经开始运行了。</p>
+<p>需要注意的是，第一个登陆到gerrit的用户将会成为管理员。</p>
+<p>Gerrit能通过多种认证方式登陆。上面选择的OpenID。</p>
+<p>现在让我们打开浏览器并打开Gerrit网站。</p>
+<p>注册并登陆后需要设置SSH keys，这样我们就能够在命令行下工作。</p>
+<p>下面我们在Ubuntu系统的另一个用户下执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen &lt;ENTER&gt;</span></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/serveradmin/.ssh/id_rsa):  &lt;ENTER&gt;</span><br><span class="line">Enter passphrase (empty for no passphrase): &lt;ENTER&gt;</span><br><span class="line">Enter same passphrase again: &lt;ENTER&gt;</span><br><span class="line">Your identification has been saved in /home/serveradmin/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /home/serveradmin/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">d5:7b:51:d8:22:0e:95:63:f9:0e:a2:22:1c:97:76:40 serveradmin@ubuntu</span><br><span class="line">The key's randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">| .E ..o o.|</span><br><span class="line">| . ..* o..|</span><br><span class="line">| o .+.+.. |</span><br><span class="line">| . + ... o... |</span><br><span class="line">| . + .S. ..o. |</span><br><span class="line">| o . . .. |</span><br><span class="line">| . . |</span><br><span class="line">| |</span><br><span class="line">| |</span><br><span class="line">+-----------------+</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat ~/.ssh/id_rsa.pub  &lt;ENTER&gt;</span></span><br><span class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDobCUbb8ExP9ci48ZCzCUE3P+IjoH6zrv/l88+4NOTf9FJWDAl4SHCXI+mrZoFEeZo9</span><br><span class="line">uieKTuvHqUFQNpnVA9vfNY6bhaTucAAt0fX9Q1M1ZtNj2IxaQd7u9PnxjSGEig0BUtjqDEu4CMhMShXGWsGAwL7ju/qu7G7RF</span><br><span class="line">iK/Wtcye6wUSjziXseCusb1DUZZ6dsOpxrPYEM3kwXpItQtAq1oEIQWsxEgj2nrOqRXm1UWdqIQU1X45XHQtg5iqi44PfLVNU</span><br><span class="line">3alu453MeWn5PrpSS5dFw/7AkBW4KMPwrOvVnu8gb9xLA0TWtPf+sQ9ROEQC5SBeO+4Q9XRNf5YaswpLj</span><br></pre></td></tr></table></figure>
+
+<p>在网站的右上角点击你的用户名然后点击Settings，在左侧的菜单中选择“SSH Public Keys”，复制上面的内容到里面，然后点Add。</p>
+<p>下面让我们测试一下通过SSH访问Gerrit：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 29418 admin@localhost &lt;ENTER&gt; &lt;Change "admin" to your username in gerrit&gt;</span><br><span class="line"></span><br><span class="line">**** Welcome to Gerrit Code Review ****</span><br><span class="line"></span><br><span class="line">Hi Administrator, you have successfully connected over SSH.</span><br><span class="line"></span><br><span class="line">Unfortunately, interactive shells are disabled.</span><br><span class="line">To clone a hosted Git repository, use:</span><br><span class="line"></span><br><span class="line">git clone ssh://ramon@10.0.0.9:29418/REPOSITORY_NAME.git</span><br><span class="line">Connection to localhost closed.</span><br></pre></td></tr></table></figure>
+
+<p>出现以上信息说明登陆成功，下面创建两个group：“android-admin” and “android”</p>
+<p>前者用来管理，包含review，merge，delete等权限，后者只有view和change-set的权限。</p>
+<p>在网页中点击People -&gt; Create New Group，输入名称“android-admin”。执行同样的操作创建“android”。</p>
+<p>现在我们为AOSP代码树创建一个父项目。所有为这个项目的设置都会继承到子项目。如果跳过这步，AOSP项目会继承“All-Projects”项目，而这个项目太通用了。</p>
+<p>在网站中点击Project -&gt; Create New Project，填入以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Project Name: Android</span><br><span class="line">Rights Inherit From: All-Projects</span><br></pre></td></tr></table></figure>
+
+<p>勾选 “Only Serve As Parent For Other Projects”，然后点击“Create Project”按钮。</p>
+<p>项目已经创建完，下面来为这个项目设置权限控制：</p>
+<p>点击Projects -&gt; List，然后选择“Android”项目，点击“Access”然后点击“Edit”，修改成如下图。图中还包含了其他的群组，可自行设置。</p>
+<p><img src="https://crazystar.net/images/gerrit.png" alt="Gerrit权限控制"></p>
+<p>现在我们可以把所有的Android项目推送到Gerrit了。</p>
+<p>第一条命令会在Gerrit上创建所有的Android项目；第二条命令会将刚刚创建的项目的父项目修改为“Android”；第三条命令会将代码推送到Gerrit，时间会比较长。</p>
+<p>进入下载Android镜像的目录执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">'echo $REPO_PATH; ssh -p 29418 admin@localhost gerrit create-project --name android/$REPO_PATH --owner android;'</span></span></span><br><span class="line"></span><br><span class="line">accessories/manifest</span><br><span class="line">device/asus/deb</span><br><span class="line">device/asus/flo</span><br><span class="line">device/asus/flo-kernel</span><br><span class="line">device/asus/fugu</span><br><span class="line">device/asus/fugu-kernel</span><br><span class="line">…</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">'echo $REPO_PATH; ssh -p 29418 admin@localhost gerrit set-project-parent --parent Android android/$REPO_PATH;'</span></span></span><br><span class="line"></span><br><span class="line">accessories/manifest</span><br><span class="line">device/asus/deb</span><br><span class="line">device/asus/flo</span><br><span class="line">device/asus/flo-kernel</span><br><span class="line">…</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">'echo $REPO_PATH; git push ssh://ramon@localhost:29418/android/$REPO_PATH +refs/heads/* +refs/tags/*;'</span></span></span><br></pre></td></tr></table></figure>
+
+<p>大功告成！</p>
+<p>创建Gerrit服务自启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo <span class="built_in">echo</span> <span class="string">"GERRIT_SITE=/opt/gerrit-review"</span> &gt;&gt; /etc/default/gerritcodereview</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ln -snf /opt/gerrit-review/bin/gerrit.sh /etc/init.d/gerrit</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo update-rc.d gerrit defaults</span></span><br></pre></td></tr></table></figure>
+
+<p>下面贴一个gerrit配置文件(postgre数据库，ldap认证，提交信息增加jira链接)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[gerrit]</span><br><span class="line">	basePath &#x3D; git</span><br><span class="line">	canonicalWebUrl &#x3D; http:&#x2F;&#x2F;localhost:8080&#x2F;</span><br><span class="line">[database]</span><br><span class="line">	type &#x3D; postgresql</span><br><span class="line">	hostname &#x3D; localhost</span><br><span class="line">	database &#x3D; reviewdb</span><br><span class="line">	username &#x3D; gerrit2</span><br><span class="line">[index]</span><br><span class="line">	type &#x3D; LUCENE</span><br><span class="line">[auth]</span><br><span class="line">	type &#x3D; LDAP</span><br><span class="line">[ldap]</span><br><span class="line">	server &#x3D; ldap:&#x2F;&#x2F;localhost:389</span><br><span class="line">	username &#x3D; cn&#x3D;admin,dc&#x3D;darkerthanblack,dc&#x3D;org</span><br><span class="line">	accountBase &#x3D; ou&#x3D;People,dc&#x3D;darkerthanblack,dc&#x3D;org</span><br><span class="line">	groupBase &#x3D; ou&#x3D;group,dc&#x3D;darkerthanblack,dc&#x3D;org</span><br><span class="line">[receive]</span><br><span class="line">	enableSignedPush &#x3D; false</span><br><span class="line">[sendemail]</span><br><span class="line">	smtpServer &#x3D; smtp.exmail.qq.com</span><br><span class="line">	smtpServerPort &#x3D; 465</span><br><span class="line">	smtpEncryption &#x3D; SSL</span><br><span class="line">	smtpUser &#x3D; example@example.com</span><br><span class="line">        smtpPass &#x3D; your_password</span><br><span class="line">        from &#x3D; example@example.com</span><br><span class="line">[container]</span><br><span class="line">	user &#x3D; gerrit2</span><br><span class="line">	javaHome &#x3D; &#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;java-8-openjdk-amd64&#x2F;jre</span><br><span class="line">[sshd]</span><br><span class="line">	listenAddress &#x3D; *:29418</span><br><span class="line">	maxConnectionsPerUser &#x3D; 0</span><br><span class="line">[httpd]</span><br><span class="line">	listenUrl &#x3D; http:&#x2F;&#x2F;*:8080&#x2F;</span><br><span class="line">[cache]</span><br><span class="line">	directory &#x3D; cache</span><br><span class="line">[gitweb]</span><br><span class="line">	cgi &#x3D; &#x2F;usr&#x2F;lib&#x2F;cgi-bin&#x2F;gitweb.cgi</span><br><span class="line">[commentlink &quot;jira&quot;]</span><br><span class="line">	match &#x3D; ([A-Z]+-[0-9]+)</span><br><span class="line">	link &#x3D; http:&#x2F;&#x2F;localhost:8081&#x2F;browse&#x2F;$1</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/12/26/kvm/" rel="prev" title="KVM">
+      <i class="fa fa-chevron-left"></i> KVM
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/02/10/ldap/" rel="next" title="搭建ldap服务器并认证登陆linux系统">
+      搭建ldap服务器并认证登陆linux系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jay</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jay</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

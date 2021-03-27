@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.darkerthanblack.org","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、安装kvm $ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils $ sudo adduser &#96;id -un&#96; libvirtd 验证安装:$ virsh -c qemu:&#x2F;&#x2F;&#x2F;system list没有错误信息就表明安装成功！确认如下两个文件的权限正确：1234$ sudo ls -la &amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM">
+<meta property="og:url" content="https://blog.darkerthanblack.org/2016/12/26/kvm/index.html">
+<meta property="og:site_name" content="永希">
+<meta property="og:description" content="一、安装kvm $ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils $ sudo adduser &#96;id -un&#96; libvirtd 验证安装:$ virsh -c qemu:&#x2F;&#x2F;&#x2F;system list没有错误信息就表明安装成功！确认如下两个文件的权限正确：1234$ sudo ls -la &amp;#x">
+<meta property="article:published_time" content="2016-12-26T05:37:33.000Z">
+<meta property="article:modified_time" content="2021-03-27T11:39:37.905Z">
+<meta property="article:author" content="Jay">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.darkerthanblack.org/2016/12/26/kvm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>KVM | 永希</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">永希</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">生命永远充满希望</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.darkerthanblack.org/2016/12/26/kvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jay">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="永希">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          KVM
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-12-26 13:37:33" itemprop="dateCreated datePublished" datetime="2016-12-26T13:37:33+08:00">2016-12-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-27 19:39:37" itemprop="dateModified" datetime="2021-03-27T19:39:37+08:00">2021-03-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、安装kvm"><a href="#一、安装kvm" class="headerlink" title="一、安装kvm"></a>一、安装kvm</h2><ol>
+<li><code>$ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils</code></li>
+<li><code>$ sudo adduser `id -un` libvirtd</code></li>
+<li>验证安装:<br><code>$ virsh -c qemu:///system list</code><br>没有错误信息就表明安装成功！<br>确认如下两个文件的权限正确：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ls -la &#x2F;var&#x2F;run&#x2F;libvirt&#x2F;libvirt-sock</span><br><span class="line">srwxrwx--- 1 root libvirtd 0 2010-08-24 14:54 &#x2F;var&#x2F;run&#x2F;libvirt&#x2F;libvirt-sock</span><br><span class="line">$ ls -l &#x2F;dev&#x2F;kvm</span><br><span class="line">crw-rw----+ 1 root kvm 10, 232 Jul  8 22:04 &#x2F;dev&#x2F;kvm</span><br></pre></td></tr></table></figure></li>
+<li>安装完毕后，会自动生成虚拟网卡 virbr0，可以通过 ifconfig 查看确认一下</li>
+<li>创建网卡桥接<br><code>$ sudo vi /etc/network/interfaces</code><br>增加如下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto br0</span><br><span class="line">iface br0 inet static</span><br><span class="line">address 192.168.0.222</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.0.1</span><br><span class="line">bridge_ports eth0</span><br></pre></td></tr></table></figure>
+保存，重启网卡设置，<code>ifconfig</code> 再查看网卡的设置，这个时候 eth0 已经没有具体的IP地址，IP地址出在了 br0 的虚拟网上面。<br>安装后，默认的目录为：<code>/etc/libvirt/qemu/</code></li>
+</ol>
+<h2 id="二、kvm-虚拟机的日常管理"><a href="#二、kvm-虚拟机的日常管理" class="headerlink" title="二、kvm 虚拟机的日常管理"></a>二、kvm 虚拟机的日常管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">virsh list --all &gt; 查看虚拟机状态</span><br><span class="line">virsh start [name] &gt; 开机</span><br><span class="line">virsh shutdown [name] &gt; 关机</span><br><span class="line">virsh destroy [name] &gt; 强制关闭电源</span><br><span class="line">virsh reboot[name] &gt; 关机</span><br><span class="line">virsh suspend [name] &gt; 挂起服务器</span><br><span class="line">virsh resume [name] &gt; 恢复服务器</span><br><span class="line">virsh autostart [name] &gt; 配置开机自启动虚拟机 （&#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;autostart&#x2F;）</span><br><span class="line">virsh undefine [name] &gt; 删除虚拟机 (只删除配置文件，并不删除虚拟磁盘文件)</span><br><span class="line">virsh create &#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;[name].xml &gt; 通过配置文件启动虚拟机</span><br><span class="line">virsh dumpxml [name] &gt; &#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;[name].xml &gt; 导出KVM虚拟机配置文件(可通过这种方式进行备份)</span><br><span class="line">virsh edit [name] &gt; 编辑虚拟机配置文件(&#x2F;etc&#x2F;libvirt&#x2F;qemu&#x2F;[name].xml，不建议直接通过vi编辑)</span><br><span class="line">virsh --version &gt; 查看虚拟工具版本</span><br><span class="line">virt-install --version &gt; 查看虚拟工具版本</span><br><span class="line">qemu-kvm -version &gt; 查看虚拟工具版本</span><br></pre></td></tr></table></figure>
+<p>注：virsh 命令丰富，可以执行各种维护任务。</p>
+<h2 id="三、安装-Win2003SP2-虚拟机"><a href="#三、安装-Win2003SP2-虚拟机" class="headerlink" title="三、安装 Win2003SP2 虚拟机"></a>三、安装 Win2003SP2 虚拟机</h2><ol>
+<li><p>上传系统 iso 文件到 <code>/file/tools/win/win2003/WIN_2003_SP2.iso</code></p>
+</li>
+<li><p>开始安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ virt-install --name&#x3D;win2003sp2 \</span><br><span class="line">--hvm \</span><br><span class="line">--ram 1024 \</span><br><span class="line">--vcpus&#x3D;1 \</span><br><span class="line">--os-type&#x3D;windows \</span><br><span class="line">--os-variant&#x3D;win2k3 \</span><br><span class="line">--arch&#x3D;x86_64 \</span><br><span class="line">--disk path&#x3D;&#x2F;file&#x2F;kvm&#x2F;win2003sp2&#x2F;win2003sp2.img,size&#x3D;20 \</span><br><span class="line">--network bridge&#x3D;br0 \</span><br><span class="line">--accelerate \</span><br><span class="line">--graphics vnc,listen&#x3D;0.0.0.0,port&#x3D;5911 \</span><br><span class="line">--cdrom &#x2F;file&#x2F;tools&#x2F;win&#x2F;win2003&#x2F;WIN_2003_SP2.iso \</span><br><span class="line">--boot cdrom</span><br></pre></td></tr></table></figure>
+<p>参数说明:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">--name      指定虚拟机名称</span><br><span class="line">--hvm        使用全虚拟化（与--paravirt相对）</span><br><span class="line">--ram        分配内存大小，单位为 MB</span><br><span class="line">--vcpus     分配CPU核心数，最大与实体机CPU核心数相同</span><br><span class="line">--disk        指定虚拟机使用的磁盘，path 指定路径，size 指定大小，单位为G</span><br><span class="line">--network  网络设置，使用默认配置时可设为 &quot;--network network:default&quot;</span><br><span class="line">--accelerate 加速</span><br><span class="line">--graphics vnc,listen&#x3D;0.0.0.0,port&#x3D;5911   指定VNC监控端口、绑定IP，默认端口为5900，端口不能重复；IP 默认绑定127.0.0.1，这里改为 0.0.0.0</span><br><span class="line">--cdrom     指定安装镜像iso设置光驱获取虚拟光驱文件的路径</span><br><span class="line">--os-type&#x3D;windows </span><br><span class="line">--os-variant&#x3D;win2k3 </span><br><span class="line">--arch&#x3D;x86_64 </span><br><span class="line">--boot cdrom 指定从 cdrom 启动，从硬盘启动时设为 hd</span><br><span class="line">--autostart      指定主机启动时自动启动此虚拟机</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将虚拟机的启动方式改为从磁盘启动<br><code>$ virsh edit win2003sp3</code></p>
+</li>
+</ol>
+<p>将 <code>&lt;boot dev=&#39;cdrom&#39;/&gt;</code>改为 <code>&lt;boot dev=&#39;hd&#39;/&gt;</code><br>然后重新启动虚拟机：<br><code>$virsh destroy win2003sp3</code><br><code>$virsh start win2003sp3</code><br>之后就可以重新使用 vnc 连接，继续安装过程。<br>4. 安装完毕后按需要设置IP地址、远程连接等即可</p>
+<h2 id="四、KVM-克隆"><a href="#四、KVM-克隆" class="headerlink" title="四、KVM 克隆"></a>四、KVM 克隆</h2><p>复制已经安装好的虚拟机为另一个全新的虚拟机。如要将上面的 win2003sp2 复制为 win2003sp2-2：</p>
+<ol>
+<li>关闭 win2003sp2<br><code>$virsh shutdown win2003sp2</code></li>
+<li>克隆 win2003sp2-2<br><code>$virt-clone -o win2003sp2 -n win2003sp2-2 -f /file/kvm/win2003sp2/win2003sp2-2.img</code><br>如果虚拟机文件比较大，复制的时间就会比较长。</li>
+<li>修改 win2003sp2-2.xml 文件<br>修改 vnc 端口避免与 win2003sp2 重复。<br><code>$virsh edit win2003sp2-2</code><br><code>&lt;graphics type=&#39;vnc&#39; port=&#39;5912&#39; autoport=&#39;no&#39; listen=&#39;0.0.0.0&#39;&gt;</code></li>
+<li>启动 win2003sp2-2<br><code>$virsh start win2003sp2-2</code><br>最后利用 vnc 登录到 win2003sp2-2 之后，修改网络设置，避免 IP 冲突。</li>
+</ol>
+<h2 id="五、KVM-快照"><a href="#五、KVM-快照" class="headerlink" title="五、KVM 快照"></a>五、KVM 快照</h2><p>对虚拟机做快照，防止损坏了可以正常恢复。kvm 快照分两种：<br>第1种：lvm 快照，如果分区是 lvm，可以利用 lvm 进行 kvm 的快照备份<br>第2种：由于 raw 格式不支持镜像，所以需要将格式转换为 qcow2 才可以创建快照。<br>第2种具体操作如下：<br>kvm 虚拟机默认使用 raw 格式的镜像格式，性能最好，速度最快，它的缺点就是不支持一些新的功能，如镜像、zlib  磁盘压缩、AES加密等。<br>要使用镜像功能，磁盘格式必须为 qcow2。<br>下面开始 kvm 虚拟机快照备份的过程：</p>
+<ol>
+<li>查看磁盘格式<br><code>$qemu-img info win2003sp2.img</code></li>
+<li>关闭 win2003sp2<br><code>$virsh shutdown win2003sp2</code></li>
+<li>转换磁盘格式<br><code>$qemu-img convert -f raw -O qcow2 win2003sp2.img win2003sp2.img.qcow2</code></li>
+</ol>
+<p>-f  源镜像的格式<br>-O 目标镜像的格式<br>4. 修改虚拟机配置文件，指向新的磁盘格式文件<br><code>$virsh edit win2003sp2</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;devices&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;disk type&#x3D;&#39;file&#39; device&#x3D;&#39;disk&#39;&gt;</span><br><span class="line">    &lt;driver name&#x3D;&#39;qemu&#39; type&#x3D;&#39;qcow2&#39; cache&#x3D;&#39;none&#39;&#x2F;&gt;</span><br><span class="line">    &lt;source file&#x3D;&#39;&#x2F;file&#x2F;kvm&#x2F;win2003sp2&#x2F;win2003sp2.img.qcow2&#39;&#x2F;&gt;</span><br><span class="line">    &lt;target dev&#x3D;&#39;hda&#39; bus&#x3D;&#39;ide&#39;&#x2F;&gt;</span><br><span class="line">    &lt;address type&#x3D;&#39;drive&#39; controller&#x3D;&#39;0&#39; bus&#x3D;&#39;0&#39; target&#x3D;&#39;0&#39; unit&#x3D;&#39;0&#39;&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;disk&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;devices&gt;</span><br></pre></td></tr></table></figure>
+<p>注：转换后镜像文件占用的空间大大减少了，而且日后为动态自动增加，而不是固定占用开始设置时占用的大小。<br>5. 创建快照<br><code>$virsh snapshot-create-as win2003sp2 clean</code><br>6. 查看虚拟机镜像快照的版本<br><code>$virsh snapshot-list win2003sp2</code><br>7. 看当前最新的快照版本<br><code>$virsh snapshot-current win2003sp2</code><br>8. 恢复虚拟机快照<br>恢复虚拟机快照前必须先关闭虚拟机！<br><code>$virsh snapshot-revert win2003sp2 clean</code><br>9. 删除虚拟机快照<br><code>$virsh snapshot-delete win2003sp2 clean</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/09/14/android-wear-e9-80-9a-e8-bf-87-e8-93-9d-e7-89-99-e8-b0-83-e8-af-95/" rel="prev" title="Android wear通过蓝牙调试">
+      <i class="fa fa-chevron-left"></i> Android wear通过蓝牙调试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/02/09/how-to-setup-gerrit-server/" rel="next" title="怎样搭建本地AOSP Gerrit服务器">
+      怎样搭建本地AOSP Gerrit服务器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装kvm"><span class="nav-number">1.</span> <span class="nav-text">一、安装kvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、kvm-虚拟机的日常管理"><span class="nav-number">2.</span> <span class="nav-text">二、kvm 虚拟机的日常管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装-Win2003SP2-虚拟机"><span class="nav-number">3.</span> <span class="nav-text">三、安装 Win2003SP2 虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、KVM-克隆"><span class="nav-number">4.</span> <span class="nav-text">四、KVM 克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、KVM-快照"><span class="nav-number">5.</span> <span class="nav-text">五、KVM 快照</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jay</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jay</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
