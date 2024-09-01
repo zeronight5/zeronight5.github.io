@@ -38,7 +38,7 @@
 {%- if theme.baidu_site_verification %}
   <meta name="baidu-site-verification" content="{{ theme.baidu_site_verification }}">
 {%- endif %}
-
+<script async defer data-website-id="7adab875-0a2a-4962-91a7-a9b7157afcdd" src="https://u.crazystar.net/script.js"></script>
 <link rel="stylesheet" href="{{ url_for(theme.css) }}/main.css">
 
 {{ next_font() }}
@@ -57,5 +57,6 @@
   <link rel="stylesheet" href="{{ pace_css_uri }}">
   <script src="{{ pace_js_uri }}"></script>
 {%- endif %}
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5629167558013771"
+     crossorigin="anonymous"></script>
 {{ next_config() }}
