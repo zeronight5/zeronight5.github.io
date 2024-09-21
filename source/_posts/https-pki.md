@@ -48,11 +48,11 @@ PKI的主要组件包括：
 
 在PKI系统中，数字证书是一种电子文档，用于证明公钥的所有权。它包含了公钥、所有者的身份信息以及颁发机构的数字签名。数字证书的主要作用是建立一个可信的身份验证机制，确保通信双方的身份真实可靠。证书通常遵循X.509标准，包含诸如版本号、序列号、签名算法、颁发者、有效期、主体、公钥信息等字段。
 
-![image.png](image.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image.png)
 
-![image.png](image1.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image1.png)
 
-![image.png](image2.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image2.png)
 
 数字签名是为了确保数据发送者的合法身份，也可以确保数据内容未遭到篡改，保证数据完整性。与手写签名不同的是，数字签名会随着文本数据的变化而变化。具体到数字证书的应用场景，数字签名的生成和验证流程如下：
 
@@ -63,7 +63,7 @@ PKI的主要组件包括：
 
 证书链是PKI系统中用于建立信任的重要机制。它是一系列数字证书的集合，从终端实体的证书开始，通过一个或多个中间证书颁发机构（CA）的证书，最终连接到根CA的证书。这种链式结构允许验证者通过追溯证书链来确认一个证书的有效性和可信度。在实际应用中，证书链的验证过程是自动进行的，通常由浏览器或操作系统完成，为用户提供了无缝的安全体验。
 
-![image.png](image3.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image3.png)
 
 ## 3. PKI如何与HTTPS配合工作？
 
@@ -73,7 +73,7 @@ SSL/TLS（Secure Sockets Layer/Transport Layer Security）是一种加密协议�
 
 ### 3.2 SSL/TLS握手过程的概述
 
-![image.png](image4.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image4.png)
 
 1. **"Client Hello" 消息：**客户端通过发送"Client Hello"消息向服务器发起握手请求。该消息包含客户端支持的 TLS 版本、密码套件选项，以及一个"client random"随机字符串。
 2. **"Server Hello" 消息：**服务器回应"Server Hello"消息，包含数字证书、服务器选择的密码套件和"server random"随机字符串。
@@ -96,7 +96,7 @@ SSL/TLS（Secure Sockets Layer/Transport Layer Security）是一种加密协议�
 
 ### 3.3** **HTTPS** **加密、解密、验证及数据传输过程
 
-![image.png](image5.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image5.png)
 
 HTTPS 的整个通信过程可分为两大阶段：证书验证和数据传输。数据传输阶段又可细分为非对称加密和对称加密两个阶段。以下是具体流程的讲解：
 
@@ -249,7 +249,7 @@ auth_mechanisms.1 = EXTERNAL
 
 `rabbitmq-plugins list`
 
-![image.png](image6.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image6.png)
 
 3. **添加证书登录用户与授权(重要)**
 
@@ -364,10 +364,10 @@ spring:
 
 ### 6.1 国密算法的介绍
 
-![image.png](image7.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image7.png)
 
 ### 6.2 国密算法与HTTPS的结合
 
 国密算法与HTTPS的结合主要体现在以下几个方面：首先，国密算法可以替代传统的RSA和ECC算法，用于HTTPS中的密钥交换和数字签名。其次，国密算法可以作为HTTPS中的对称加密算法，用于加密传输的数据。最后，国密算法还可以用于HTTPS证书的生成和验证，以提高安全性和合规性。
 
-![image.png](image8.png)
+![image.png](https://crazystar.net/blog-images/https-pki/image8.png)
